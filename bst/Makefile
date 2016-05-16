@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-I./inc
+CFLAGS=-I./inc -g
 SRC=./src
 OBJ=bst.o
 EXE=bst
