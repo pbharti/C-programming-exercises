@@ -8,3 +8,6 @@ EXE=bst
 
 all: $(OBJ)
 	gcc -o $(EXE) $^ $(CFLAGS)
+
+clean:
+	rm -i *.o $(EXE)
