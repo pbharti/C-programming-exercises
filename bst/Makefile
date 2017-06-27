@@ -4,10 +4,10 @@ SRC=./src
 OBJ=bst.o
 EXE=bst
 %.o: $(SRC)/%.c
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CC) -g -c -o $@ $< $(CFLAGS)
 
 all: $(OBJ)
-	gcc -o $(EXE) $^ $(CFLAGS)
+	gcc -g -o $(EXE) $^ $(CFLAGS)
 
 clean:
 	rm -i *.o $(EXE)

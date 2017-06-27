@@ -45,6 +45,7 @@ node_t * Add(node_t *root, int data)
          root->left = Add(root->left, data);
      else
          root->right = Add(root->right, data);
+     return root;
 }
 
 int Delete(node_t *root, int data)
@@ -52,7 +53,17 @@ int Delete(node_t *root, int data)
 #if 0
     if(!root)
         return -1;
-    else if(root->data == data)
+    if(data < root->left->data)
+        Delete(root->left, data);
+    else if(data > root->right->data)
+        Delete(root->right, data);
+    else {
+         printf("\n Found Node %d that needs to be deleted at addr:%p\n", data, root);
+         /* 1. This case is for when we are deleting a leaf node */
+         if((root->left == NULL) && (root->right == NULL)) {
+
+         }
+    }
 #endif
 }
 
@@ -130,5 +141,9 @@ int main()
         printf("\n Node with data 100 not found\n");
     else
         printf("\nFound Node with data 100 at %p with data %d\n", findnode, findnode->data);
+    while (1)
+    {
+         continue;
+    }
     return 0;
 }
