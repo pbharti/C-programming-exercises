@@ -27,13 +27,19 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <stdbool.h>
 
-int main()
+int main(int argc, char **argv)
 {
     printf("\n[Main]: Started default program...\n");
     uint32_t pipefd[2] = {0};
     uint32_t cpid=0, ppid=0;
     int32_t ret = -1;
+    bool exec = false;
+    if(argv[1])
+    {
+        exec = atoi(argv[1]);
+    }
     ret = pipe(pipefd);
     if(ret < 0)
     {
@@ -44,7 +50,12 @@ int main()
     {
         pid_t pid = getpid();
         ppid = getppid();
+        uint32_t nBytes = 0;
         printf("\n[Child]: own pid:%u, Parent id:%u ..\n", pid, ppid);
+        /* Close the read end of the pipe */
+        close(pipefd[0]);
+        nBytes = write(pipefd[1], "Hello World from Child process\n", strlen("Hello World from Child process"));
+        printf("\n wrote %u bytes from child process...\n", nBytes);
         while(1)
             continue;
     }
@@ -53,6 +64,12 @@ int main()
         pid_t pid = getpid();
         ppid = getppid();
         printf("\n[Parent]: own pid:%u, Parent id:%u ..\n", pid, ppid);
+        /* Close the write end of the pipe */
+        close(pipefd[1]);
+        uint32_t nBytes = 0;
+        char buff[1024] = {0};
+        nBytes = read(pipefd[0], buff, 1024);
+        printf("\n Got from child %u bytes: [%s] ...\n", nBytes, buff);
         while(1)
             continue;
     }
