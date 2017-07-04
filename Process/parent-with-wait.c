@@ -1,6 +1,6 @@
 /*---------------------------------------------------------------------------
 *
-* child.c
+* parent-with-wait.c
 *
 *     06/27/2017 -
 *
@@ -25,14 +25,45 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <string.h>
+#include <unistd.h>
 
-int main()
+int main(int argc, char** argv)
 {
-     printf("\n[Child Process]: Default exec program Started....\n");
-     printf("\n[Child Process]: own pid:%u, parent id:%u....\n", getpid(), getppid());
-     while(1)
-         continue;
+     printf("\n[Parent]: Started default program...\n");
+     uint32_t cpid=0, ppid=0;
+     int32_t exec = -1;
+     if(argv[1])
+         exec = atoi(argv[1]);
+     if(!fork())
+     {
+         pid_t pid = getpid();
+         ppid = getppid();
+         int32_t ret = 0;
+         printf("\n[Child]: own pid:%u, Parent id:%u ..\n", pid, ppid);
+         if(exec == 1)
+         {
+             ret = execl("./child", "./child", NULL);
+            if(ret<0)
+            {
+                printf("\nexecl failed...\n");
+                exit(0);
+            }
+         }
+         else
+         {
+             while(1)
+                 continue;
+
+         }
+     }
+     else
+     {
+         pid_t pid = getpid();
+         ppid = getppid();
+         printf("\n[Parent]: own pid:%u, Parent id:%u ..\n", pid, ppid);
+         while(1)
+             continue;
+     }
      return 0;
 }
