@@ -65,3 +65,40 @@ sllNode_t *sllAddatEnd(sllNode_t *head, int newData)
     iter->next = temp;
     return head;
 }
+
+sllNode_t *sllAdd(sllNode_t *head, int newData, int pos)
+{
+    sllNode_t *new = NULL;
+    new = (sllNode_t *)malloc(sizeof(sllNode_t));
+    new->data = newData;
+    new->next = NULL;
+
+    if(!head)
+    {
+        printf("\nSLL is empty..Adding at the head itself\n");
+        head = new;
+        return head;
+    }
+    /* SLL is not empty. Traverse to correct position to add */
+    sllNode_t *ptr = head;
+    uint32_t loc = 0;
+    while((loc < pos) || (ptr != NULL))
+    {
+        ptr = ptr->next;
+        loc++;
+    }
+    if(!ptr)
+    {
+        printf("\n Reached %d node.. Adding new node at %d position..\n", loc, loc+1);
+        sllNode_t *temp = ptr->next;
+        ptr->next = new;
+        new->next = temp;
+    }
+    if(!ptr)
+    {
+        if(loc < pos)
+            printf("\n Can not add node at %dposition..List has only %d elements..\n", pos, loc);
+        return NULL;
+    }
+    return NULL;
+}
