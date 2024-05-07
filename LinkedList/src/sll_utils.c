@@ -23,6 +23,7 @@
 */
 
 #include "list_common.h"
+
 sllNode_t * sllAddNodeatBegining(sllNode_t * head, int newData)
 {
     sllNode_t *temp = (sllNode_t *)calloc(1, sizeof(sllNode_t));

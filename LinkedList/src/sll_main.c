@@ -23,7 +23,7 @@
 */
 #include <list_common.h>
 
-sllNode_t *pHead;
+sllNode_t *pHead = NULL;
 
 int main()
 {

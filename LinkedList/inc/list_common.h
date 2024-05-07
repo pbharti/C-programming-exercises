@@ -33,5 +33,15 @@ typedef struct sllNode{
     struct sllNode *next;
 }sllNode_t;
 
+static int get_add_options()
+{
+    printf("######## Please enter your option for adding:\n");
+    printf("#1. For adding node at the begining \n");
+    printf("#2. For adding node at the end \n");
+    printf("#3. For adding node at the given position \n");
+    int option = 0;
+    scanf("%d",&option);
+    return option;
+}
 
 #endif /* LIST_COMMON_H */
