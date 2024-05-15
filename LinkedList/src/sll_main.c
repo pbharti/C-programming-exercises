@@ -35,6 +35,8 @@ int main()
         printf("#2. Delete a node from the linked list #\n");
         printf("#3. Traverse a linked list             #\n");
         printf("#4. Quit this application              #\n");
+        printf("#5. Create default list                #\n");
+        printf("#6. Iterate using two pointers         #\n");
         printf("#SLL>");
         scanf("%d", &option);
         switch(option)
@@ -42,21 +44,41 @@ int main()
             case 1:
                 {
                     printf("\n\nAdding a node now\n");
+                    printf("Enter node data: ");
+                    int data = 0;
+                    scanf("%d", &data);
+                    pHead = sllAddatBegining(pHead, data);
                     break;
                 }
             case 2:
                 {
-                    printf("\n\nDeleting a node now\n");
+                    int position = 0;
+                    printf("\n\nDeleting a node now..Enter the position:\n");
+                    scanf("%d", &position);
+                    pHead = sllDelete(pHead, position);
                     break;
                 }
             case 3:
                 {
                     printf("\n\nTraversing a Linked list now\n");
+                    sllTraverse(pHead);
                     break;
                 }
             case 4:
                 {
                     printf("\n\nNothing to be done..quitting now\n");
+                    break;
+                }
+            case 5:
+                {
+                    printf("\n\nCreating default single linked list\n");
+                    pHead = sllCreateDefault(pHead);
+                    break;
+                }
+            case 6:
+                {
+                    printf("\n\n Iterating using two pointers on a single linked list\n");
+                    sllIterateWithTwo(pHead);
                     break;
                 }
             default:

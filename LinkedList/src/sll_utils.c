@@ -24,7 +24,7 @@
 
 #include "list_common.h"
 
-sllNode_t * sllAddNodeatBegining(sllNode_t * head, int newData)
+sllNode_t * sllAddatBegining(sllNode_t * head, int newData)
 {
     sllNode_t *temp = (sllNode_t *)calloc(1, sizeof(sllNode_t));
     if(!temp)
@@ -45,6 +45,20 @@ sllNode_t * sllAddNodeatBegining(sllNode_t * head, int newData)
     return head;
 }
 
+sllNode_t *sllCreateDefault(sllNode_t *head) {
+    head = sllAddatEnd(head, 1);
+    head = sllAddatEnd(head, 3);
+    head = sllAddatEnd(head, 9);
+    head = sllAddatEnd(head, 5);
+    head = sllAddatEnd(head, 7);
+    head = sllAddatEnd(head, 2);
+    head = sllAddatEnd(head, 4);
+    head = sllAddatEnd(head, 6);
+    head = sllAddatEnd(head, 8);
+    head = sllAddatEnd(head, 10);
+    return head;
+}
+
 sllNode_t *sllAddatEnd(sllNode_t *head, int newData)
 {
     sllNode_t *temp = (sllNode_t *)calloc(1, sizeof(sllNode_t));
@@ -60,7 +74,7 @@ sllNode_t *sllAddatEnd(sllNode_t *head, int newData)
         head = temp;
         return head;
     }
-    sllNode_t iter = head;
+    sllNode_t *iter = head;
     while(iter->next != NULL)
         iter = iter->next;
     iter->next = temp;
@@ -99,7 +113,54 @@ sllNode_t *sllAdd(sllNode_t *head, int newData, int pos)
     {
         if(loc < pos)
             printf("\n Can not add node at %dposition..List has only %d elements..\n", pos, loc);
-        return NULL;
+        return head;
     }
-    return NULL;
+    return head;
+}
+
+void sllTraverse(sllNode_t *head) {
+    sllNode_t *iter = head;
+    printf("Single Linked List Data: ");
+    while(iter != NULL) {
+        if(iter->next != NULL)
+            printf("[%p]%d-->", iter, iter->data);
+        else
+            printf("[%p]%d", iter, iter->data);
+        iter = iter->next;
+    }
+    printf("\n\n");
+}
+
+sllNode_t * sllDelete(sllNode_t *head, int position) {
+    if (!head)
+        return NULL;
+    sllNode_t *temp = head;
+    if(position <= 1) {
+        printf("Removing Linked List node from begining since position specified is : %d\n", position);
+        head = head->next;
+        free(temp);
+        return head;
+    }
+    int iter = 1;
+    while((iter < position-1) && (temp != NULL)){
+        iter ++;
+        temp = temp->next;
+    }
+    sllNode_t * temp2 = temp->next;
+    printf("Removing Linked List node at position: %d and data: %d\n", position, temp2->data);   
+    temp->next = temp2->next;
+    free(temp2);
+    return head;
+}
+
+void sllIterateWithTwo(sllNode_t * head) {
+    if(!head)
+        return;
+    sllNode_t *slow = head, *fast = head;
+    while(fast != NULL && fast->next != NULL) {
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+    printf("Slow pointer is at: %p/%d\n", slow, slow->data);
+    printf("Fast pinter is at %p/%d", fast, fast != NULL?fast->data:0);
 }

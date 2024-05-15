@@ -43,5 +43,10 @@ static int get_add_options()
     scanf("%d",&option);
     return option;
 }
-
+sllNode_t * sllAddatBegining(sllNode_t * head, int newData);
+void sllTraverse(sllNode_t *head);
+sllNode_t *sllCreateDefault(sllNode_t *head);
+sllNode_t * sllAddatEnd(sllNode_t * head, int newData);
+sllNode_t * sllDelete(sllNode_t *head, int position);
+void sllIterateWithTwo(sllNode_t *head);
 #endif /* LIST_COMMON_H */
