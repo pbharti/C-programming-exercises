@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 void DumpArray(int *input, size_t len) {
     if(!len || input == NULL) {
         return;
@@ -9,7 +10,7 @@ void DumpArray(int *input, size_t len) {
     printf("\n");
 }
 void Merge(int *left, int *right, size_t lenl, size_t lenr, int *output) {
-    int i, j, k = 0;
+    int i=0, j=0, k=0;
     while(i<lenl && j<lenr)  {
         if(left[i] < right[j]) {
             output[k] = left[i];
@@ -34,7 +35,6 @@ void Merge(int *left, int *right, size_t lenl, size_t lenr, int *output) {
             k++;
         }
     }
-    return;
 }
 void MergeSort(int *arr, size_t len) {
     if(!len || len <2) {

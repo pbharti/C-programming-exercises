@@ -46,7 +46,7 @@ void swap(int *a, int *b)
 }
 uint32_t getPartitionIndex(int *arr, int start, int end)
 {
-    int i = 0,pivot = 0,j = 0;
+    int i = 0,pivot = 0;
     pivot = arr[end];
     int pIndex = start;
     for(i=start; i < end; i++ )

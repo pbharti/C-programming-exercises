@@ -164,3 +164,7 @@ void sllIterateWithTwo(sllNode_t * head) {
     printf("Slow pointer is at: %p/%d\n", slow, slow->data);
     printf("Fast pinter is at %p/%d", fast, fast != NULL?fast->data:0);
 }
+
+void sllReverse(sllNode_t *head, sllNode_t *newhead) {
+    while()
+}
