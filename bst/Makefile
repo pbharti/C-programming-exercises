@@ -1,4 +1,5 @@
-CC=gcc
+#CC=gcc
+CC=g++
 CFLAGS=-I./inc -g
 SRC=./src
 OBJ=bst.o
@@ -7,7 +8,7 @@ EXE=bst
 	$(CC) -g -c -o $@ $< $(CFLAGS)
 
 all: $(OBJ)
-	gcc -g -o $(EXE) $^ $(CFLAGS)
+	$(CC) -g -o $(EXE) $^ $(CFLAGS)
 
 clean:
 	rm -i *.o $(EXE)

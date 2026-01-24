@@ -165,6 +165,40 @@ void sllIterateWithTwo(sllNode_t * head) {
     printf("Fast pinter is at %p/%d", fast, fast != NULL?fast->data:0);
 }
 
-void sllReverse(sllNode_t *head, sllNode_t *newhead) {
-    while()
+sllNode_t *sllReverse(sllNode_t *head) {
+    sllNode_t *temp = head;
+    sllNode_t *prev = NULL;
+    while(temp != NULL) {
+        sllNode_t *front = temp->next;
+        temp->next = prev;
+        prev = temp;
+        temp = front;
+    }
+    printf("###### dumping before returning #######\n");
+    sllTraverse(prev);
+    return prev;
+}
+
+sllNode_t *sllReverseInBatch(sllNode_t *head, int batch) {
+    // Base case for recursion
+    if (head == NULL)
+        return NULL;
+
+    sllNode_t *prev = NULL;
+    sllNode_t *curr = head;
+    int counter = 0;
+    while(curr != NULL && counter < batch) {
+        if(counter < batch){
+            sllNode_t *front = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = front;
+            counter++;
+        } 
+    }
+    if(curr != NULL) {
+        counter = 1;
+        head->next = sllReverseInBatch(curr, batch);
+    }
+    return prev;
 }

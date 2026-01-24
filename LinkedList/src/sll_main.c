@@ -37,6 +37,8 @@ int main()
         printf("#4. Quit this application              #\n");
         printf("#5. Create default list                #\n");
         printf("#6. Iterate using two pointers         #\n");
+        printf("#7. Iterative reverse                  #\n");
+        printf("#8. Reverse in Batch                   #\n");
         printf("#SLL>");
         scanf("%d", &option);
         switch(option)
@@ -81,6 +83,25 @@ int main()
                     sllIterateWithTwo(pHead);
                     break;
                 }
+
+            case 7:
+                {
+                    printf("\n\n Reversing iteratively a single linked list\n");
+                    pHead = sllReverse(pHead);
+                    sllTraverse(pHead);
+                    break;
+                }
+
+            case 8:
+                {
+                    printf("\n\n Reversing a single linked list in batches.. Enter the batch count: \n");
+                    int batchcount = 0;
+                    scanf("%d", &batchcount);
+                    pHead = sllReverseInBatch(pHead, batchcount);
+                    sllTraverse(pHead);
+                    break;
+                }
+
             default:
                 {
                     printf("\n\nInvalid option. Enter your option againa\n");

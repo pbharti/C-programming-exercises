@@ -48,5 +48,7 @@ void sllTraverse(sllNode_t *head);
 sllNode_t *sllCreateDefault(sllNode_t *head);
 sllNode_t * sllAddatEnd(sllNode_t * head, int newData);
 sllNode_t * sllDelete(sllNode_t *head, int position);
+sllNode_t * sllReverse(sllNode_t *head);
+sllNode_t * sllReverseInBatch(sllNode_t *head, int batchcount);
 void sllIterateWithTwo(sllNode_t *head);
 #endif /* LIST_COMMON_H */
